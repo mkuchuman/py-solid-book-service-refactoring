@@ -2,9 +2,8 @@ import json
 import xml.etree.ElementTree as ET
 
 
-class Book:
-    def __init__(self, title: str, content: str):
-        self.title = title
+class BookDisplay:
+    def __init__(self, content: str) -> None:
         self.content = content
 
     def display(self, display_type: str) -> None:
@@ -15,6 +14,12 @@ class Book:
         else:
             raise ValueError(f"Unknown display type: {display_type}")
 
+
+class BookPrint:
+    def __init__(self, title: str, content: str) -> None:
+        self.title = title
+        self.content = content
+
     def print_book(self, print_type: str) -> None:
         if print_type == "console":
             print(f"Printing the book: {self.title}...")
@@ -24,6 +29,12 @@ class Book:
             print(self.content[::-1])
         else:
             raise ValueError(f"Unknown print type: {print_type}")
+
+
+class BookSerializer:
+    def __init__(self, title: str, content: str) -> None:
+        self.title = title
+        self.content = content
 
     def serialize(self, serialize_type: str) -> str:
         if serialize_type == "json":
@@ -37,6 +48,11 @@ class Book:
             return ET.tostring(root, encoding="unicode")
         else:
             raise ValueError(f"Unknown serialize type: {serialize_type}")
+
+
+class Book(BookSerializer, BookDisplay, BookPrint):
+    def __init__(self, title: str, content: str) -> None:
+        super().__init__(title, content)
 
 
 def main(book: Book, commands: list[tuple[str, str]]) -> None | str:
