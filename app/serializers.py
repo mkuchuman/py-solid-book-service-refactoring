@@ -2,6 +2,10 @@ import json
 import xml
 import xml.etree.ElementTree
 from abc import abstractmethod, ABC
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from app.main import Book
 
 
 class SerializeStrategy(ABC):
