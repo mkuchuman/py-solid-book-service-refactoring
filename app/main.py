@@ -13,9 +13,8 @@ class Book:
         if display_type == "console":
             strategy = ConsoleDisplay()
         if strategy:
-            strategy.display(self)
-        else:
-            raise ValueError(f"Unknown display type: {display_type}")
+            return strategy.display(self)
+        raise ValueError(f"Unknown display type: {display_type}")
 
     def print_book(self, print_type: str) -> None:
         if print_type == "console":
@@ -23,9 +22,8 @@ class Book:
         if print_type == "reverse":
             strategy = ReversePrint()
         if strategy:
-            strategy.print(self)
-        else:
-            raise ValueError(f"Unknown print type: {print_type}")
+            return strategy.print(self)
+        raise ValueError(f"Unknown print type: {print_type}")
 
     def serialize(self, serialize_type: str) -> None:
         if serialize_type == "json":
@@ -34,8 +32,7 @@ class Book:
             strategy = XmlSerialize()
         if strategy:
             return strategy.serialize(self)
-        else:
-            raise ValueError(f"Unknown serialize type: {serialize_type}")
+        raise ValueError(f"Unknown serialize type: {serialize_type}")
 
 
 def main(book: Book, commands: list[tuple[str, str]]) -> None | str:

@@ -13,11 +13,10 @@ class PrintStrategy(ABC):
 
 class ConsolePrint(PrintStrategy):
     def print(self, book: "Book") -> None:
-        print(f"Printing the book: {book.title}...")
-        print(book.content)
+        print(f"Printing the book: {book.title}...\n{book.content}")
 
 
 class ReversePrint(PrintStrategy):
     def print(self, book: "Book") -> None:
-        print(f"Printing the book in reverse: {book.title}...")
-        print(book.content[::-1])
+        print(f"Printing the book in reverse: {book.title}..."
+              f"\n{book.content[::-1]}")
